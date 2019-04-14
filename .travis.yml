@@ -7,12 +7,13 @@ jobs:
     script:
     - sh ./docker_build.sh
   - stage: deploy
+    name: Deploy images and restart
     before_script:
     - openssl aes-256-cbc -K $encrypted_dc1c72a86108_key -iv $encrypted_dc1c72a86108_iv
       -in deploy_rsa.enc -out deploy_rsa -d
     - chmod 600 deploy_rsa
     script:
-    - ssh -i travis -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "${CONN}"
+    - ssh -i deploy_rsa -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "${CONN}"
       'git -C /var/www/test_www pull'
-    - ssh -i travis -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "${CONN}"
+    - ssh -i deploy_rsa -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "${CONN}"
       'sh ./docker_restart.sh'
