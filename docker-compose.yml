@@ -6,4 +6,4 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./index2.html:/usr/share/nginx/html/index2.html
+      - ./public/:/usr/share/nginx/html/:ro

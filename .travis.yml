@@ -14,4 +14,4 @@ jobs:
     - chmod 600 deploy_rsa
     script:
     - ssh -i deploy_rsa -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "${CONN}"
-      'cd shop && git pull && sh ./docker_restart.sh'
+      'cd shop && git pull && sh ./docker_restart_prod.sh'
