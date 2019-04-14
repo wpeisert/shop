@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  www:
+    image: wpeisert/shop
+    ports:
+      - "80:80"
